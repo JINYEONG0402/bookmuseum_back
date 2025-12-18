@@ -4,20 +4,21 @@ phases:
   install:
     runtime-versions:
       java: corretto17
+
   pre_build:
     commands:
       - pwd
       - ls -al
-      - cd demo
-      - chmod +x gradlew
+      - chmod +x ./gradlew
+      - ./gradlew --version
+
   build:
     commands:
       - ./gradlew clean build
-      - cd ..
       - mkdir -p bundle/scripts
       - cp appspec.yml bundle/
       - cp -r scripts bundle/
-      - cp demo/build/libs/*.jar bundle/
+      - cp build/libs/*.jar bundle/
 
 artifacts:
   files:
