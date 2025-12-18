@@ -7,7 +7,6 @@ phases:
 
   pre_build:
     commands:
-      - pwd
       - ls -al
       - chmod +x ./gradlew
       - ./gradlew --version
