@@ -6,12 +6,17 @@ phases:
       java: corretto17
   pre_build:
     commands:
-      - chmod +x ./gradlew
-      - ./gradlew --version
+      - cd demo
+      - chmod +x gradlew
   build:
     commands:
       - ./gradlew clean build
+      - cd ..
+      - mkdir -p bundle/scripts
+      - cp appspec.yml bundle/
+      - cp -r scripts bundle/
+      - cp demo/build/libs/*.jar bundle/
 
 artifacts:
   files:
-    - build/libs/*.jar
+    - bundle/**/*
